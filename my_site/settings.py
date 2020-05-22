@@ -13,7 +13,7 @@ SECRET_KEY = 'xthv+g$gmzic4pvz3if_(+0cs9_hn&8gqt&!a2_mn7&cs(hb08'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['83.136.219.54']
 
 
 # Application definition
@@ -122,4 +122,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 SITE_URL = "http://127.0.0.1:8000"
 
-CORS_ORIGIN_WHITELIST = ['http://localhost:8080']
+CORS_ORIGIN_WHITELIST = ['http://localhost:8080', 'http://amitprafull.com/']
