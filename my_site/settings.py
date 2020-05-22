@@ -122,4 +122,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 SITE_URL = "http://127.0.0.1:8000"
 
-CORS_ORIGIN_WHITELIST = ['http://localhost:8080', 'http://amitprafull.com/']
+CORS_ORIGIN_WHITELIST = ['http://localhost:8080', 'http://localhost:3000', 'http://83.136.219.54:8080',
+                         'http://localhost:5000', 'http://83.136.219.54', 'http://apgiiit.com']
+
