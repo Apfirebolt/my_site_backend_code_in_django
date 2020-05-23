@@ -6,6 +6,18 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
+class CreateGalleryCategory(CreateAPIView):
+    serializer_class = GalleryCategorySerializer
+    permission_classes = []
+    queryset = Category.objects.all()
+
+
+class ListGalleryCategory(ListAPIView):
+    serializer_class = GalleryCategorySerializer
+    permission_classes = []
+    queryset = Category.objects.all()
+
+
 class CreateGalleryPost(CreateAPIView):
     serializer_class = GallerySerializer
     permission_classes = []
