@@ -66,9 +66,9 @@ class UncategorizedBlog(models.Model):
     created_at = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.blog_slug = slugify(self.title)
-            super(UncategorizedBlog, self).save(*args, **kwargs)
+        self.blog_slug = slugify(self.title)
+        super(UncategorizedBlog, self).save(*args, **kwargs)
+
 
     def __str__(self):
         return str(self.title)
