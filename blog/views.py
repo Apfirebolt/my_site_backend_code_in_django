@@ -5,22 +5,23 @@ from . serializers import ( BlogCategorySerializer, BlogPostSerializer, BlogPost
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 
 class CreateBlogCategory(CreateAPIView):
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
     queryset = BlogCategory.objects.all()
     serializer_class = BlogCategorySerializer
 
 
 class ListBlogCategory(ListAPIView):
-    permission_classes = []
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = BlogCategory.objects.all()
     serializer_class = BlogCategorySerializer
 
 
 class EditDeleteBlogCategory(RetrieveUpdateDestroyAPIView):
-    permission_classes = []
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = BlogCategory.objects.all()
     serializer_class = BlogCategorySerializer
     lookup_field = 'category_slug'
@@ -36,7 +37,7 @@ class EditDeleteBlogCategory(RetrieveUpdateDestroyAPIView):
 
 
 class CreateBlogPost(CreateAPIView):
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
 
@@ -51,19 +52,25 @@ class CreateBlogPost(CreateAPIView):
 
 
 class ListBlogPost(ListAPIView):
-    permission_classes = []
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = BlogPost.objects.all()
     serializer_class = BlogPostSerializer
 
 
 class CreateBlogPostImage(CreateAPIView):
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
     queryset = BlogPostImages.objects.all()
     serializer_class = BlogPostImageSerializer
 
 
 class ListBlogPostImage(ListAPIView):
-    permission_classes = []
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    queryset = BlogPostImages.objects.all()
+    serializer_class = BlogPostImageSerializer
+
+
+class UpdateBlogPostImage(RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = BlogPostImages.objects.all()
     serializer_class = BlogPostImageSerializer
 
@@ -75,13 +82,13 @@ class ListFamousQuotes(ListAPIView):
 
 
 class CreateFamousQuotes(CreateAPIView):
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
     queryset = FamousQuotes.objects.all()
     serializer_class = FamousQuotesSerializer
 
 
 class CreateUnclassifiedBlog(CreateAPIView):
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
     queryset = UncategorizedBlog.objects.all()
     serializer_class = UncategorizedBlogSerializer
 
@@ -93,7 +100,13 @@ class ListUnclassifiedBlog(ListAPIView):
 
 
 class CreateUnclassifiedBlogImages(CreateAPIView):
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
+    queryset = UnclassifiedBlogImages.objects.all()
+    serializer_class = UnclassifiedBlogImagesSerializer
+
+
+class UpdateUnclassifiedBlogImages(RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = UnclassifiedBlogImages.objects.all()
     serializer_class = UnclassifiedBlogImagesSerializer
 
@@ -105,7 +118,7 @@ class ListUnclassifiedBlogImages(ListAPIView):
 
 
 class RetrieveUnclassifiedBlogDetail(RetrieveUpdateDestroyAPIView):
-    permission_classes = []
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = UncategorizedBlog.objects.all()
     serializer_class = UncategorizedBlogSerializer
     lookup_field = 'blog_slug'

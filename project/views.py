@@ -1,39 +1,46 @@
 from django.shortcuts import render
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveDestroyAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveDestroyAPIView, RetrieveUpdateDestroyAPIView
 from . models import Project, ProjectImages
 from . serializers import ProjectImageSerializer, ProjectSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 
 class CreateProject(CreateAPIView):
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
 
 
 class ListProject(ListAPIView):
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
-    permission_classes = []
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class CreateProjectImage(CreateAPIView):
     serializer_class = ProjectImageSerializer
     queryset = ProjectImages.objects.all()
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
 
 
 class ListProjectImages(ListAPIView):
     serializer_class = ProjectImageSerializer
     queryset = ProjectImages.objects.all()
-    permission_classes = []
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+
+class DetailProjectImage(RetrieveUpdateDestroyAPIView):
+    serializer_class = ProjectImageSerializer
+    queryset = ProjectImages.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class UpdateDestroyProjectImage(RetrieveDestroyAPIView):
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
-    permission_classes = []
+    permission_classes = [IsAuthenticatedOrReadOnly]
     lookup_field = 'project_slug'
 
     def retrieve(self, request, *args, **kwargs):

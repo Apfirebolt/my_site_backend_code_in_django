@@ -4,29 +4,30 @@ from . models import Gallery, Category, ContactMessage
 from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 
 class CreateGalleryCategory(CreateAPIView):
     serializer_class = GalleryCategorySerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
     queryset = Category.objects.all()
 
 
 class ListGalleryCategory(ListAPIView):
     serializer_class = GalleryCategorySerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Category.objects.all()
 
 
 class CreateGalleryPost(CreateAPIView):
     serializer_class = GallerySerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
     queryset = Gallery.objects.all()
 
 
 class ListGalleryPost(ListAPIView):
     serializer_class = GallerySerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticatedOrReadOnly]
     queryset = Gallery.objects.all()
 
     def list(self, request, *args, **kwargs):
@@ -51,5 +52,5 @@ class ContactMessageCreate(CreateAPIView):
 
 class ContactMessageList(ListAPIView):
     serializer_class = ContactMessageSerializer
-    permission_classes = []
+    permission_classes = [IsAuthenticated]
     queryset = ContactMessage.objects.all()
