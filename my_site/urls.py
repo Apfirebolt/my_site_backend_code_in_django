@@ -7,7 +7,7 @@ from my_site import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='Homepage.html'), name='home'),
+    path('', TemplateView.as_view(template_name='Homepage.html', extra_context={'jane': 12}), name='home'),
     path('blog/', include(('blog.urls', 'blog'), namespace='blog')),
     path('gallery/', include(('gallery.urls', 'gallery'), namespace='gallery')),
     path('project/', include(('project.urls', 'project'), namespace='project')),

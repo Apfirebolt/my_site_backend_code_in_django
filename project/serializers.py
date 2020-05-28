@@ -1,5 +1,11 @@
 from rest_framework import serializers
-from . models import ProjectImages, Project
+from . models import ProjectImages, Project, Technology
+
+
+class TechnologySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Technology
+        fields = '__all__'
 
 
 class ProjectSerializer(serializers.ModelSerializer):

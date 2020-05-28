@@ -1,11 +1,12 @@
 from django.urls import path
 from django.views.generic import TemplateView
-from . views import (CreateProject, ListProject, ListProjectImages,
+from . views import (CreateProject, ListProject, ListProjectImages, ListTechnologyView,
                      CreateProjectImage, UpdateDestroyProjectImage, DetailProjectImage)
 
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='project/project_home.html'), name='home'),
+    path('technology', ListTechnologyView.as_view(), name='technology'),
     path('create', CreateProject.as_view(), name='create-project'),
     path('list', ListProject.as_view(), name='list-project'),
     path('image_create', CreateProjectImage.as_view(), name='create-project-image'),

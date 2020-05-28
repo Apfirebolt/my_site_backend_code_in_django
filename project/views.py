@@ -1,10 +1,16 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveDestroyAPIView, RetrieveUpdateDestroyAPIView
-from . models import Project, ProjectImages
-from . serializers import ProjectImageSerializer, ProjectSerializer
+from . models import Project, ProjectImages, Technology
+from . serializers import ProjectImageSerializer, ProjectSerializer, TechnologySerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+
+
+class ListTechnologyView(ListAPIView):
+    serializer_class = TechnologySerializer
+    queryset = Technology.objects.all()
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class CreateProject(CreateAPIView):

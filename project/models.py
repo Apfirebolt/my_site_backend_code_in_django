@@ -1,5 +1,16 @@
 from django.db import models
 from django.utils.text import slugify
+from . choices import TECHNOLOGY_CHOICES
+
+
+class Technology(models.Model):
+    name = models.CharField('Technology Name', choices=TECHNOLOGY_CHOICES, max_length=200)
+
+    def __str__(self):
+        return str(self.name)
+
+    class Meta:
+        verbose_name_plural = "Technology"
 
 
 class Project(models.Model):
@@ -10,9 +21,8 @@ class Project(models.Model):
     project_slug = models.SlugField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.project_slug = slugify(self.project_name)
-            super(Project, self).save(*args, **kwargs)
+        self.project_slug = slugify(self.project_name)
+        super(Project, self).save(*args, **kwargs)
 
     def __str__(self):
         return str(self.project_name)

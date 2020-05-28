@@ -1,6 +1,6 @@
 from django.urls import path
 from django.views.generic import TemplateView
-from . views import (CreateBlogCategory, ListBlogCategory, EditDeleteBlogCategory, CreateFamousQuotes, ListFamousQuotes,
+from . views import (blog_test, CreateBlogCategory, ListBlogCategory, EditDeleteBlogCategory, CreateFamousQuotes, ListFamousQuotes,
                       CreateUnclassifiedBlog, ListUnclassifiedBlog, CreateUnclassifiedBlogImages,
                       ListUnclassifiedBlogImages, RetrieveUnclassifiedBlogDetail, CreateBlogPost, ListBlogPost,
                       ListBlogPostImage, CreateBlogPostImage, UpdateBlogPostImage, UpdateUnclassifiedBlogImages)
@@ -8,6 +8,7 @@ from . views import (CreateBlogCategory, ListBlogCategory, EditDeleteBlogCategor
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='blog/blog_home.html'), name='home'),
+    path('test', blog_test, name='blog-test'),
     path('blog-category/create', CreateBlogCategory.as_view(), name='blog-category-create'),
     path('blog-category/list', ListBlogCategory.as_view(), name='blog-category-list'),
     path('blog-post/create', CreateBlogPost.as_view(), name='blog-post-create'),
