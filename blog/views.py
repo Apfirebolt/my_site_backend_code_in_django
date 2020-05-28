@@ -31,7 +31,6 @@ class EditDeleteBlogCategory(RetrieveUpdateDestroyAPIView):
     lookup_field = 'category_slug'
 
     def retrieve(self, request, *args, **kwargs):
-        print('Request object is : ', request.ip_address)
         instance = self.get_object()
         serializer = self.get_serializer(instance)
         data = serializer.data
